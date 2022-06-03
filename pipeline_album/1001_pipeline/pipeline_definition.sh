@@ -27,6 +27,9 @@ export _CFG__DEPLOYABLE="shelah_gateway"
 export _CFG__DEPLOYABLE_VERSION="0.1.0"
 export _CFG__DEPLOYABLE_GIT_BRANCH="v${_CFG__DEPLOYABLE_VERSION}"
 
+# This is the path from (and including) the root folder for the repo all to way to the deployable
+export _CFG__DEPLOYABLE_RELATIVE_PATH="shelah/${_CFG__DEPLOYABLE}"
+
 # Defines the name (& tag) for the deployable's image to be created by the pipeline. If there is no tag, Docker will
 # by default put a tag of ":latest"
 #

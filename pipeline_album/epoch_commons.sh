@@ -7,7 +7,8 @@
 # is to "source" this file as the first thing that is done in a pipeline definition script.
 #
 export _CFG__UBUNTU_IMAGE="ubuntu:22.04"
-export _CFG__UBUNTU_PYTHON_PACKAGE="python3.10"
+export _CFG__PYTHON_VERSION="3.10"
+export _CFG__UBUNTU_PYTHON_PACKAGE="python${_CFG__PYTHON_VERSION}"
 export _CFG__BUILD_SERVER="shelah-build-server"
 
 
@@ -15,11 +16,12 @@ export _CFG__BUILD_SERVER="shelah-build-server"
 #
 #       1. An application may consist of multiple microservices, each of which is a "deployable"
 #       2. GIT repos are at the level of volatility, which means usually multiple microservices are in the same GIT
-#               repo. Usual pattern is: one repo for the client services (CLI, UI, ...), and one repo for the server-side
+#               repo if they have the same volatility (e.g., same team works on all of them). 
+#               Usual pattern is to have 2 repos: one repo for the client services (CLI, UI, ...), and one repo for the server-side
 #               microservices
 #       3. What we call a "deployable" here corresponds to 1 microservice, which entails 1 Python package (with its own
 #               microservice-specific setup.cfg and src folder)
-#       4. So an "application" has 1+ repos, and each repo has 1+ "deployables"
+#       4. So an "application" has 1+ repos, and each repo has 1+ "deployables".
 #       5. Test database repos are at the level of the "application" to allow for testing multiple microservices together, while segregating
 #               microservice-specific tests in subfolders.
 #       6. Pipelines are the level of a "deployable". 
@@ -33,9 +35,10 @@ export _CFG__APPLICATION="shelah"
 
 export _CFG__DEPLOYABLE_GIT_URL="https://github.com/ChateauClaudia-Labs/${_CFG__APPLICATION}.git"
 
-export _CFG__TESTDB_GIT_URL="https://github.com/ChateauClaudia-Labs/${_CFG__APPLICATION}-testdb.git"
+export _CFG__TESTDB_GIT_URL="https://github.com/ChateauClaudia-Labs/${_CFG__APPLICATION}-test.git"
 
-export _CFG__TESTDB_REPO_NAME="${_CFG__APPLICATION}-testdb"
+# This is only needed for Windows tests
+#export _CFG__TESTDB_REPO_NAME="${_CFG__APPLICATION}-testdb"
 
 # We need to set the variable $REPOS_ROOT which is used by the Shelah pipeline definitions as the root folder
 # above test environments like UAT.

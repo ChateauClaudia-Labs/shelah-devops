@@ -27,14 +27,22 @@ export _CFG__DEPLOYABLE="shelah_gateway"
 export _CFG__DEPLOYABLE_GIT_BRANCH="dev"
 export _CFG__DEPLOYABLE_VERSION="dev"
 
+# This is the path from (and including) the root folder for the repo all to way to the deployable
+export _CFG__DEPLOYABLE_RELATIVE_PATH="shelah/${_CFG__DEPLOYABLE}"
+
+# This is a Linux command that will be executed inside the deployable's container when that container is deployed,
+# to validate that the deployment is correct. The deployment will be aborted by CCL Chassis if this command fails.
+#
+#export _CFG__DEPLOYMENT_VALIDATION_COMMAND="python --version"
+export _CFG__DEPLOYMENT_VALIDATION_COMMAND="echo 'import shelah_gateway' > /tmp/validation.py & python /tmp/validation.py"
 
 # Inputs for function: epoch_commons.sh::_CFG__set_build_docker_options
 #
 # Purpose: function is called by CCL-DevOps to set _CFG__BUILD_DOCKER_OPTIONS
 #
 export MOUNT_SHELAH_GIT_PROJECT=1
-export _CFG__DEPLOYABLE_GIT_URL="/mnt/c/Users/aleja/Documents/Code/chateauclaudia-labs/shelah-repos/shelah"
-export _CFG__TESTDB_GIT_URL="/mnt/c/Users/aleja/Documents/Code/chateauclaudia-labs/shelah-repos/${_CFG__DEPLOYABLE}-testdb"
+export _CFG__DEPLOYABLE_GIT_URL="/mnt/c/Users/aleja/Documents/Code/chateauclaudia-labs/shelah-repos/${_CFG__APPLICATION}"
+export _CFG__TESTDB_GIT_URL="/mnt/c/Users/aleja/Documents/Code/chateauclaudia-labs/shelah-repos/${_CFG__APPLICATION}-test"
 
 # Defines the name (& tag) for the deployable's image to be created by the pipeline. If there is no tag, Docker will
 # by default put a tag of ":latest"

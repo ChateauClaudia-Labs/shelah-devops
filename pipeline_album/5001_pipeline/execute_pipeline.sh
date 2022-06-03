@@ -9,7 +9,7 @@ execute_docker_flow_step request_testrun.sh "testrun step"
 
 execute_docker_flow_step request_deployment.sh "deployment step"
 
-export APODEIXI_CONTAINER=$(docker ps -q -l)
+export CONTAINER_FOR_DEPLOYABLE=$(docker ps -q -l)
 abort_pipeline_step_on_error
-echo "${_SVC__INFO_PROMPT} ... Apodeixi is up in container ${APODEIXI_CONTAINER}"
+echo "${_SVC__INFO_PROMPT} ... ${_CFG__DEPLOYABLE} is up in container ${CONTAINER_FOR_DEPLOYABLE}"
 
