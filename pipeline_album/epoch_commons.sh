@@ -32,6 +32,7 @@ export _CFG__BUILD_SERVER="shelah-build-server"
 #
 
 export _CFG__APPLICATION="shelah"
+export _CFG__APPLICATION_BASE_IMAGE="${_CFG__APPLICATION}-base"
 
 export _CFG__DEPLOYABLE_GIT_URL="https://github.com/ChateauClaudia-Labs/${_CFG__APPLICATION}.git"
 
